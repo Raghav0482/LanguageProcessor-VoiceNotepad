@@ -63,15 +63,16 @@ save_button.grid(row = 1, column = 2,pady = 10,columnspan=3)
 
 
 ### Text-to-speech
-entry = Text(Window, width = 40, height=4, font=font_tup) 
+entry = Entry(Window, width = 40, font=font_tup) 
 entry.grid(row=2,column=1,pady = 20,padx=20)
 
 
 def play():
     language = 'en'
-    output_audio = gTTS(text = entry.get() , lang= language)
-    output_audio.save("convert.mp3")
-    os.system("convert.mp3")
+    myobj = gTTS(text = entry.get(), lang = language, slow = False)
+    myobj.save("convert.wav")
+    os.system("convert.wav")
+    entry.delete(0, END)
 
 btn_txt_sc= Button(Window, text = "Text-to-speech",font = 'bold, 15',width=20, command=play)
 btn_txt_sc.grid(row=2,column=0,padx=10)
